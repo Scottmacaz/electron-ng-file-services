@@ -1,7 +1,13 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  
-  <div>
-    <p>Open a File:</p>
-    <button (click)="openFile()"> Open File </button>
+<!--bootstrap tutorial: https://www.quackit.com/bootstrap/bootstrap_4/tutorial/bootstrap_grid_system.cfm -->
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">
+      <app-open-file></app-open-file>
+       </div>
+
+    <div class="col-md-6">
+       <app-save-file></app-save-file>
+    </div>
   </div>
+</div>

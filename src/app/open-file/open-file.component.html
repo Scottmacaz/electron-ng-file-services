@@ -1,0 +1,13 @@
+<div class="row">
+    <h1>Open a File</h1>
+  </div>
+  <div class="row">
+    File text dispalyed below.
+  </div>
+  <div class="row">
+      <button (click)="openFile()"> Open File </button>
+      FileName: [{{fileName}}]
+  </div>
+  <div class="row">
+      <textarea [(ngModel)]="fileContents"  readonly></textarea>
+  </div>

@@ -1,9 +1,9 @@
-const {app, BrowserWindow, ipcMain, dialog} = require('electron')
+const { app, BrowserWindow, ipcMain, dialog } = require('electron')
 var fs = require('fs');
 let win = null;
 function createWindow() {
   // Initialize the window to our specified dimensions
-  win = new BrowserWindow({width: 1000, height: 600});
+  win = new BrowserWindow({ width: 1000, height: 600 });
   // Specify entry point
   win.loadURL('http://localhost:4200');
   // Show dev tools
@@ -17,27 +17,30 @@ function createWindow() {
 }
 
 app.on('ready', function () {
-    createWindow();
-  });
-  app.on('activate', () => {
-    if (win === null) {
-      createWindow()
-    }
-  })
-  app.on('window-all-closed', function () {
-    if (process.platform != 'darwin') {
-      console.log("Exiting ....");
-      app.quit();
-    }
-  });
+  createWindow();
+});
+app.on('activate', () => {
+  if (win === null) {
+    createWindow()
+  }
+})
+app.on('window-all-closed', function () {
+  if (process.platform != 'darwin') {
+    console.log("Exiting ....");
+    app.quit();
+  }
+});
 
-  ipcMain.on('open-file', (event, arg) => {  
+ipcMain.on('open-file', (event, arg) => {
 
-    dialog.showOpenDialog({ properties: ['openFile'], filters: [{ name: 'CSV', extensions: ['csv'] }, { name: 'ALL', extensions: ['*'] }] },
+  dialog.showOpenDialog({ properties: ['openFile'], filters: [{ name: 'ALL', extensions: ['*'] }, { name: 'CSV', extensions: ['csv'] }] },
     function (fileNames) {
+      //For some reason if event.returnValue is not set weird things happen in the UI, so jus set it here ....
+      event.returnValue = "";
+      console.log("Enter showOpenDialog");
+
       if (fileNames == undefined) return;
       var fileName = fileNames[0];
-
 
       fs.readFile(fileName, 'utf-8', function (err, data) {
         if (err != null) {
@@ -49,23 +52,37 @@ app.on('ready', function () {
 
         console.log(fileName);
         console.log(data);
-        dialog.showMessageBox({
-          message: "The file has been read!",
-          buttons: ["OK"]
-        });
+        // dialog.showMessageBox({
+        //   message: "The file has been read!",
+        //   buttons: ["OK"]
+        // });
 
         //focusedWindow.webContents.send('file-data', { fileLines: data });
-        event.returnValue = data;
-
-        //document.getElementById("editor").value = data;
+        event.returnValue = { 'fileName': fileName, 'fileContents': data };
+        return;
 
       });
     });
+});
 
+ipcMain.on('save-file', (event, fileContents) => {
+  event.returnValue = "";
+  console.log(`Saving file contents: ${fileContents}`)
 
+  dialog.showSaveDialog((fileName) => {
+    if (fileName === undefined) {
+      console.log("You didn't save the file");
+      return;
+    }
+    // fileName is a string that contains the path and filename created in the save file dialog.  
+    fs.writeFile(fileName, fileContents, (err) => {
+      if (err) {
+        dialog.showErrorBox("An error ocurred creating the file " + err.message);
+        event.returnValue = {'fileCreated': false, 'error': `Error Creating File: ${err.message}`}
+      }
+    });
 
-
-
-    // Send value synchronously back to renderer process
-    //event.returnValue =  'these are the file contents .....';
+    event.returnValue = {'fileCreated': true}
+    return;
+  });
 });
