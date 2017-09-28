@@ -1,0 +1,7 @@
+d:\dev\ng\electron-ng-file-services\net-server\net-server.Domain\bin\Debug\netstandard1.4\net-server.Domain.deps.json
+d:\dev\ng\electron-ng-file-services\net-server\net-server.Domain\bin\Debug\netstandard1.4\net-server.Domain.dll
+d:\dev\ng\electron-ng-file-services\net-server\net-server.Domain\bin\Debug\netstandard1.4\net-server.Domain.pdb
+d:\dev\ng\electron-ng-file-services\net-server\net-server.Domain\obj\Debug\netstandard1.4\net-server.Domain.csproj.CoreCompileInputs.cache
+d:\dev\ng\electron-ng-file-services\net-server\net-server.Domain\obj\Debug\netstandard1.4\net-server.Domain.AssemblyInfo.cs
+d:\dev\ng\electron-ng-file-services\net-server\net-server.Domain\obj\Debug\netstandard1.4\net-server.Domain.dll
+d:\dev\ng\electron-ng-file-services\net-server\net-server.Domain\obj\Debug\netstandard1.4\net-server.Domain.pdb
