@@ -1,33 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FileSystemService } from '../services/file-system.service';
 @Component({
   selector: 'app-open-file',
   templateUrl: './open-file.component.html',
-  styleUrls: ['./open-file.component.css']
+  styleUrls: ['./open-file.component.css'],
+  providers: [FileSystemService]
 })
 export class OpenFileComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fileSystemService: FileSystemService) { }
   fileContents: string;
   fileName: string;
-  
-  ngOnInit() {
-  }
+
+  ngOnInit() {  }
 
   openFile() {
-    if (!this.electronService.isElectronApp) {
-      alert("Open File only works in an electron app!");
+
+    let response = this.fileSystemService.openFile();
+    debugger;
+    if (response.hasError) {
+      //Put a status somewhere ....
+      alert(`Error Opening File: ${response.error}`);
       return;
+
     }
-    
-    console.log("Opening File ...");
-    let response =  this.electronService
-    .ipcRenderer.sendSync('open-file');
     this.fileName = response.fileName;
     this.fileContents = response.fileContents;
-    console.log(`fileName: ${this.fileName}`);
-    console.log(`fileContents: ${this.fileContents}`);
-
   }
 
 }

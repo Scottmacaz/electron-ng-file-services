@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FileSystemService} from '../services/file-system.service';
+import { FileSystemService } from '../services/file-system.service';
 
 @Component({
   selector: 'app-save-file',
   templateUrl: './save-file.component.html',
-  styleUrls: ['./save-file.component.css']
+  styleUrls: ['./save-file.component.css'],
+  providers: [FileSystemService]
 })
 export class SaveFileComponent implements OnInit {
 
@@ -16,11 +17,13 @@ export class SaveFileComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveFile(){
-    
-    console.log(`Saving File Contents: ${this.fileContents} `);
+  saveFile() {
+debugger;
     let response = this.fileSystemService.saveFile(this.fileContents);
-    if (response.)
+    if (response.hasError) {
+      alert(`Error Creating File: ${response.error}`);
+    }
+    return false;
   }
 
 }
