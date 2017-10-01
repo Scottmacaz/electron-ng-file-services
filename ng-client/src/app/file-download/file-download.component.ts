@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Http, Response, RequestOptions, Headers } from '@angular/http';
+import { Http, Response, RequestOptions, ResponseContentType, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { saveAs } from 'file-saver/FileSaver';
 
@@ -26,7 +26,7 @@ export class FileDownloadComponent implements OnInit {
         headers.append('Access-Control-Allow-Origin', '*');
          
         let options = new RequestOptions({ headers: headers });
-
+        options.responseType = ResponseContentType.ArrayBuffer;
         this.http
         .get(URL, options).toPromise()
         .then (response => this.saveToFileSystem(response));
@@ -47,7 +47,7 @@ export class FileDownloadComponent implements OnInit {
     const contentDispositionHeader: string = response.headers.get('Content-Disposition');
     const parts: string[] = contentDispositionHeader.split(';');
     const filename = parts[1].split('=')[1];
-    const blob = new Blob([response._body], { type: 'text/plain' });
+    const blob = new Blob([response._body], { type: 'application/zip' });
     saveAs(blob, filename);
             }
 

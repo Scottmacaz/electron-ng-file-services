@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 
 namespace net_core_server.Controllers
 {
@@ -21,21 +22,21 @@ namespace net_core_server.Controllers
 
       var fileName = @"/tmp/SomeZipFile2.zip";
 
-    Response.Headers["Content-Disposition"] = $"inline; filename=SomeZipFile2.zip";
+    Response.Headers["Content-Disposition"] = $"attachment; filename=SomeZipFile2.zip";
     var fileContentResult = new FileContentResult(System.IO.File.ReadAllBytes(fileName), "application/zip")
     {
         FileDownloadName = $"SomeZipFile2.zip"
     };
-    // I need to delete file after me
-    //System.IO.File.Delete(filename);
-
     return fileContentResult;
+    //   var stream = new FileStream(fileName, FileMode.Open);
+    //  return new FileStreamResult(stream, new MediaTypeHeaderValue("application/zip"))
+    // {
+    //     FileDownloadName = "SomeFile2.zip"
+    // };
 
-      // //var fileName = @"D:\temp\someZipFile.zip";
-      // var fileName = @"/tmp/SomeZipFile2.zip";
-      // var stream = new FileStream(fileName, FileMode.Open);
-      // var response = File(stream, "application/octet-stream"); // FileStreamResult
-      // return response;
+    
+    
+
     }
 
     // POST api/values
