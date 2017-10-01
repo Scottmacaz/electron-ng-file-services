@@ -9,3 +9,10 @@
 .pad {
   margin:5px;
 }
+
+.border {
+  border-style: solid;
+  border-width: thin;
+  border-color: black;
+  margin: 5px
+}

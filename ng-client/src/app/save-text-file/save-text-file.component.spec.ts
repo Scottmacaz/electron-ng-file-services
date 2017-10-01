@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SaveFileComponent } from './save-file.component';
+import { SaveFileComponent } from './save-text-file.component';
 
 describe('SaveFileComponent', () => {
   let component: SaveFileComponent;

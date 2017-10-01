@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FileSystemService } from '../services/file-system.service';
 @Component({
-  selector: 'app-open-file',
-  templateUrl: './open-file.component.html',
-  styleUrls: ['./open-file.component.css'],
+  selector: 'app-open-text-file',
+  templateUrl: './open-text-file.component.html',
+  styleUrls: ['./open-text-file.component.css'],
   providers: [FileSystemService]
 })
 export class OpenFileComponent implements OnInit {

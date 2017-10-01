@@ -1,8 +1,9 @@
+<div >
 <div class="row">
-    <h1>Open a File</h1>
+    <h1>Open a Text File (Electron)</h1>
   </div>
   <div class="row">
-    File text dispalyed below.
+    Open a file using the electron file open dialog.  File text dispalyed below.
   </div>
   <div class="row">
       <button (click)="openFile()" class="pad"> Open File </button>
@@ -11,3 +12,4 @@
   <div class="row">
       <textarea [(ngModel)]="fileContents"  readonly></textarea>
   </div>
+</div>

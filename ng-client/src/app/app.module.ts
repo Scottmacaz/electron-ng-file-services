@@ -3,11 +3,12 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import {NgxElectronModule} from 'ngx-electron';
-import { OpenFileComponent } from './open-file/open-file.component';
-import { SaveFileComponent } from './save-file/save-file.component';
+import { OpenFileComponent } from './open-text-file/open-text-file.component';
+import { SaveFileComponent } from './save-text-file/save-text-file.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import {HttpModule} from '@angular/http';
 import { FileDownloadComponent } from './file-download/file-download.component';
+import { SaveZipFileComponent } from './save-zip-file/save-zip-file.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FileDownloadComponent } from './file-download/file-download.component';
     OpenFileComponent,
     SaveFileComponent,
     FileUploadComponent,
-    FileDownloadComponent
+    FileDownloadComponent,
+    SaveZipFileComponent
 
   ],
   imports: [

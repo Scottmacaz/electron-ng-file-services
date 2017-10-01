@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OpenFileComponent } from './open-file.component';
+import { OpenFileComponent } from './open-text-file.component';
 
 describe('OpenFileComponent', () => {
   let component: OpenFileComponent;
