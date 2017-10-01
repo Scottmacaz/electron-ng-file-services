@@ -11,15 +11,31 @@ namespace net_core_server.Controllers
   [Route("api/[controller]")]
   public class FileUploadDownloadController : Controller
   {
-    // GET api/values
-
-    [HttpGet("{id}")]
-    public async Task<IActionResult> Get(int id)
+    
+    //[HttpGet("{id}")]
+    //public async Task<IActionResult> Get(int id)
+    [HttpGet()]
+    //public async Task<IActionResult> Get()
+    public IActionResult Get()
     {
-      var fileName = @"D:\temp\someZipFile.zip";
-      var stream = new FileStream(fileName, FileMode.Open);
-      var response = File(stream, "application/octet-stream"); // FileStreamResult
-      return response;
+
+      var fileName = @"/tmp/SomeZipFile2.zip";
+
+    Response.Headers["Content-Disposition"] = $"inline; filename=SomeZipFile2.zip";
+    var fileContentResult = new FileContentResult(System.IO.File.ReadAllBytes(fileName), "application/zip")
+    {
+        FileDownloadName = $"SomeZipFile2.zip"
+    };
+    // I need to delete file after me
+    //System.IO.File.Delete(filename);
+
+    return fileContentResult;
+
+      // //var fileName = @"D:\temp\someZipFile.zip";
+      // var fileName = @"/tmp/SomeZipFile2.zip";
+      // var stream = new FileStream(fileName, FileMode.Open);
+      // var response = File(stream, "application/octet-stream"); // FileStreamResult
+      // return response;
     }
 
     // POST api/values
@@ -40,7 +56,8 @@ namespace net_core_server.Controllers
       }
       long size = file.Length;
       var contentType = file.ContentType;
-      if (contentType != "application/x-zip-compressed")
+      if (contentType != "application/x-zip-compressed" &&
+      contentType != "application/zip")
       {
         return BadRequest("Content type must be: application/x-zip-compressed");
       }
