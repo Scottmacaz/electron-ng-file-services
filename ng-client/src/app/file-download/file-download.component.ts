@@ -30,17 +30,7 @@ export class FileDownloadComponent implements OnInit {
         this.http
         .get(URL, options).toPromise()
         .then (response => this.saveToFileSystem(response));
-        
-        
-
-    // this.http
-    // .get(URL, options)
-    // .map((res: Response) => res['_body'])
-    // .subscribe(
-    // (success) => {
-    //   alert("Success! " + success._body);
-    // },
-    // (error) => alert("Error! " + error));
+       
   }
   private saveToFileSystem(response){
     debugger;

@@ -19,7 +19,7 @@ export class SaveFileComponent implements OnInit {
 
   saveFile() {
 debugger;
-    let response = this.fileSystemService.saveFile(this.fileContents);
+    let response = this.fileSystemService.saveTextFile(this.fileContents);
     if (response.hasError) {
       alert(`Error Creating File: ${response.error}`);
     }

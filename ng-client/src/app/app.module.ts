@@ -18,7 +18,6 @@ import { SaveZipFileComponent } from './save-zip-file/save-zip-file.component';
     FileUploadComponent,
     FileDownloadComponent,
     SaveZipFileComponent
-
   ],
   imports: [
     BrowserModule,

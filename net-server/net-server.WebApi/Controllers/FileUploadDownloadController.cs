@@ -20,7 +20,8 @@ namespace net_core_server.Controllers
     public IActionResult Get()
     {
 
-      var fileName = @"/tmp/SomeZipFile2.zip";
+      //var fileName = @"/tmp/SomeZipFile2.zip";
+      var fileName = @"D:/tmp/SomeZipFile.zip";
 
     Response.Headers["Content-Disposition"] = $"attachment; filename=SomeZipFile2.zip";
     var fileContentResult = new FileContentResult(System.IO.File.ReadAllBytes(fileName), "application/zip")

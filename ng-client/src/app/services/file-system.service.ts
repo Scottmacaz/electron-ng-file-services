@@ -33,7 +33,7 @@ debugger;
 
   }
 
-  saveFile(fileContents: string) {
+  saveTextFile(fileContents: string) {
     if (!this.electronService.isElectronApp) {
       return {
         "hasError": true,
@@ -43,6 +43,22 @@ debugger;
 
     console.log(`Saving File Contents: ${fileContents} `);
     let response = this.electronService.ipcRenderer.sendSync('save-file', fileContents);
+    return {
+      "hasError": false,
+      "error": ""
+    };
+  }
+
+  saveZipFile(fileContents: any, fileName: string) {
+    if (!this.electronService.isElectronApp) {
+      return {
+        "hasError": true,
+        "error": "saveFile() currently only works in an electron app!"
+      }
+    }
+
+    console.log(`Saving File Contents: ${fileContents} `);
+    let response = this.electronService.ipcRenderer.sendSync('save-file', fileContents, fileName);
     return {
       "hasError": false,
       "error": ""
