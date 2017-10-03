@@ -33,7 +33,6 @@ export class FileDownloadComponent implements OnInit {
        
   }
   private saveToFileSystem(response){
-    debugger;
     const contentDispositionHeader: string = response.headers.get('Content-Disposition');
     const parts: string[] = contentDispositionHeader.split(';');
     const filename = parts[1].split('=')[1];
