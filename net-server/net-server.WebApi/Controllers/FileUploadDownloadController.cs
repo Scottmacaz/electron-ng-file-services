@@ -42,7 +42,6 @@ namespace net_core_server.Controllers
             zipStream.Write(bytes, 0, bytes.Length);
           }
 
-
           //Now add a file from the disk.
           zipArchiveEntry = archive.CreateEntry("someZipFile.zip", CompressionLevel.Fastest);
           using (var zipStream = zipArchiveEntry.Open())
@@ -61,32 +60,14 @@ namespace net_core_server.Controllers
 
 
       }
-
-
-
-      //This is the old way that returned a single file from the disk:
-      //var fileName = @"/tmp/SomeZipFile2.zip";
-      // var fileName = @"D:/tmp/SomeZipFile.zip";
-
-      // Response.Headers["Content-Disposition"] = $"attachment; filename=SomeZipFile2.zip";
-      // var fileContentResult = new FileContentResult(System.IO.File.ReadAllBytes(fileName), "application/zip")
-      // {
-      //   FileDownloadName = $"SomeZipFile2.zip"
-      // };
-      // return fileContentResult;
-
-
-
-
-
     }
 
     // POST api/values
     [HttpPost]
-    public async Task<IActionResult> Post()
+    public async Task<IActionResult> Post([FromForm] IFormFileCollection files)
     {
 
-      var files = Request.Form.Files;
+      //var files = Request.Form.Files;
       if (files == null)
       {
         return BadRequest("files is null.");

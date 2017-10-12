@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 namespace net_core_server.Controllers
 {
     [Route("api/[controller]")]
-    public class ProtocolImportExportController : Controller
+    public class SomeObjectImportExportController : Controller
     {
         // GET api/values
         [HttpGet]

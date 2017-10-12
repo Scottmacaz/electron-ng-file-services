@@ -20,25 +20,25 @@ export class FileDownloadComponent implements OnInit {
 
   download() {
     var headers = new Headers();
-    
-        headers.append('Content-Type', 'application/zip');
-        headers.append('Accept', 'application/zip');
-        headers.append('Access-Control-Allow-Origin', '*');
-         
-        let options = new RequestOptions({ headers: headers });
-        options.responseType = ResponseContentType.ArrayBuffer;
-        this.http
-        .get(URL, options).toPromise()
-        .then (response => this.saveToFileSystem(response));
-       
+
+    headers.append('Content-Type', 'application/zip');
+    headers.append('Accept', 'application/zip');
+    headers.append('Access-Control-Allow-Origin', '*');
+
+    let options = new RequestOptions({ headers: headers });
+    options.responseType = ResponseContentType.ArrayBuffer;
+    this.http
+      .get(URL, options).toPromise()
+      .then(response => this.saveToFileSystem(response));
+
   }
-  private saveToFileSystem(response){
+  private saveToFileSystem(response) {
     const contentDispositionHeader: string = response.headers.get('Content-Disposition');
     const parts: string[] = contentDispositionHeader.split(';');
     const filename = parts[1].split('=')[1];
     const blob = new Blob([response._body], { type: 'application/zip' });
     saveAs(blob, filename);
-            }
+  }
 
 
 }

@@ -22,6 +22,10 @@ export class FileUploadComponent implements OnInit {
   ngOnInit() {
   }
 
+  public fileChangeEvent(){
+    this.upload();
+}
+
   upload() {
 
     let inputEl: HTMLInputElement = this.el.nativeElement.querySelector('#fileToUpload');
@@ -30,8 +34,8 @@ export class FileUploadComponent implements OnInit {
     if (fileCount == 0) {
       return;
     }
+    formData.append('files', inputEl.files.item(0));
 
-    formData.append('fileToUpload', inputEl.files.item(0));
     var headers = new Headers();
 
     headers.delete("Content-Type");

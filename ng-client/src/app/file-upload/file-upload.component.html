@@ -5,9 +5,9 @@
   <p>Uploads a file to the .NET Web API server</p>
 </div>
 <div class="row">
-  <input id="fileToUpload"  class="pad" type="file" />
+  <input id="fileToUpload"  class="pad" type="file" (change)="fileChangeEvent($event)" />
 </div>
 <!-- button to trigger the file upload when submitted -->
-<div class="row">
+<!-- <div class="row">
   <button type="button" class="pad" (click)="upload()">Upload File</button>
-</div>
+</div> -->
